@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Мой план: тонус, ягодицы и осанка</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&family=Unbounded:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F4F2F7;
+    --surface: #FFFFFF;
+    --ink: #241C2E;
+    --muted: #675E75;
+    --accent: #7B2D8E;
+    --on-accent: #FFFFFF;
+    --accent-soft: #EBDDF0;
+    --rest: #DCEAE3;
+    --rest-ink: #2A5646;
+    --line: #DAD4E2;
+    --font-body: "Onest", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --font-head: "Unbounded", "Onest", system-ui, -apple-system, "Segoe UI", sans-serif;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17131D; --surface: #211B29; --ink: #F0EBF5; --muted: #A99EB8;
+      --accent: #D9A6EA; --on-accent: #2A1433; --accent-soft: #382544;
+      --rest: #1E2E28; --rest-ink: #A9D4C2; --line: #382F45;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17131D; --surface: #211B29; --ink: #F0EBF5; --muted: #A99EB8;
+    --accent: #D9A6EA; --on-accent: #2A1433; --accent-soft: #382544;
+    --rest: #1E2E28; --rest-ink: #A9D4C2; --line: #382F45;
+  }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: var(--font-body); font-size: 16px; line-height: 1.55;
+  }
+  main { max-width: 720px; margin: 0 auto; padding: 28px 16px 64px; }
+  h1, h2, h3 { font-family: var(--font-head); font-weight: 600; line-height: 1.2; margin: 0; }
+  h1 { font-size: clamp(26px, 6.5vw, 38px); letter-spacing: -0.01em; }
+  h2 { font-size: 20px; margin: 44px 0 6px; }
+  h3 { font-size: 15px; margin: 22px 0 8px; }
+  p { margin: 0 0 10px; }
+  .lead { color: var(--muted); margin-top: 10px; max-width: 56ch; }
+  .sub { color: var(--muted); margin: 0 0 16px; max-width: 60ch; }
+
+  /* ---------- неделя ---------- */
+  .week { margin-top: 22px; display: grid; gap: 8px; }
+  .day { display: grid; grid-template-columns: 48px 1fr; gap: 12px; align-items: start; }
+  .dname {
+    font-family: var(--font-head); font-weight: 500; font-size: 15px;
+    padding-top: 14px; color: var(--muted);
+  }
+  .rest {
+    background: var(--rest); color: var(--rest-ink);
+    border-radius: 10px; padding: 10px 14px; font-size: 14.5px;
+  }
+  .rest b { font-weight: 600; }
+  details.train {
+    background: var(--surface); border: 2px solid var(--accent);
+    border-radius: 18px; overflow: hidden;
+  }
+  details.train summary {
+    list-style: none; cursor: pointer; display: flex; align-items: center; gap: 12px;
+    padding: 16px 16px; background: var(--accent); color: var(--on-accent);
+  }
+  details.train summary::-webkit-details-marker { display: none; }
+  details.train summary:focus-visible { outline: 3px solid var(--ink); outline-offset: -3px; }
+  .t-title { flex: 1; }
+  .t-title strong { display: block; font-family: var(--font-head); font-weight: 600; font-size: 17px; line-height: 1.2; }
+  .t-title span { font-size: 13.5px; opacity: .9; }
+  .chev { width: 12px; height: 12px; border-right: 2.5px solid currentColor; border-bottom: 2.5px solid currentColor; transform: rotate(45deg); transition: transform .2s; margin-right: 4px; }
+  details[open] .chev { transform: rotate(-135deg); }
+  .done { display: flex; align-items: center; gap: 8px; font-size: 13.5px; }
+  .done input { width: 22px; height: 22px; accent-color: var(--ink); cursor: pointer; }
+  .t-body { padding: 6px 16px 18px; }
+
+  ol.ex { list-style: none; margin: 0; padding: 0; counter-reset: ex; }
+  ol.ex li {
+    counter-increment: ex; position: relative; padding: 12px 0 12px 34px;
+    border-top: 1px solid var(--line);
+  }
+  ol.ex li:first-child { border-top: 0; }
+  ol.ex li::before {
+    content: counter(ex); position: absolute; left: 0; top: 12px;
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--accent-soft); color: var(--accent);
+    font-weight: 600; font-size: 13px; display: grid; place-items: center;
+  }
+  ol.ex b { font-weight: 600; }
+  .chip {
+    display: inline-block; background: var(--accent-soft); color: var(--accent);
+    border-radius: 999px; padding: 1px 10px; font-size: 13px; font-weight: 600; margin-left: 6px; white-space: nowrap;
+  }
+  ol.ex small { display: block; color: var(--muted); font-size: 14px; margin-top: 2px; }
+  .frame { font-size: 14px; color: var(--muted); margin: 8px 0 0; }
+  .frame b { color: var(--ink); font-weight: 600; }
+
+  button.reset {
+    margin-top: 12px; background: none; border: 1.5px solid var(--line); color: var(--muted);
+    border-radius: 999px; padding: 6px 14px; font: inherit; font-size: 13.5px; cursor: pointer;
+  }
+  button.reset:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+  /* ---------- общие блоки ---------- */
+  .panel {
+    background: var(--surface); border-radius: 16px; padding: 16px 18px;
+    border: 1px solid var(--line);
+  }
+  .panel + .panel { margin-top: 10px; }
+  ul.plain { margin: 6px 0 0; padding-left: 20px; }
+  ul.plain li { margin: 5px 0; }
+  .rule { border-left: 4px solid var(--accent); background: var(--accent-soft); border-radius: 0 12px 12px 0; padding: 12px 16px; margin: 14px 0; }
+  .rule p:last-child { margin: 0; }
+
+  .terms { display: grid; gap: 8px; grid-template-columns: 1fr; }
+  @media (min-width: 560px) { .terms { grid-template-columns: 1fr 1fr; } }
+  .terms div { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; font-size: 14.5px; }
+  .terms b { display: block; font-weight: 600; }
+
+  .meal { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; padding: 12px 0; border-top: 1px solid var(--line); }
+  .meal:first-of-type { border-top: 0; }
+  .meal b { font-weight: 600; }
+  .meal .kc { color: var(--muted); font-size: 14px; text-align: right; white-space: nowrap; }
+  .meal p { grid-column: 1 / -1; margin: 0; color: var(--muted); font-size: 14.5px; }
+
+  .macros { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin: 12px 0 4px; }
+  @media (min-width: 560px) { .macros { grid-template-columns: repeat(4, 1fr); } }
+  .macros div { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; }
+  .macros strong { display: block; font-family: var(--font-head); font-size: 16px; font-weight: 600; }
+  .macros span { font-size: 13.5px; color: var(--muted); }
+
+  .steps { display: grid; gap: 8px; margin-top: 10px; }
+  .steps div { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; }
+  .steps b { font-weight: 600; }
+
+  footer { margin-top: 44px; color: var(--muted); font-size: 13.5px; }
+  @media (prefers-reduced-motion: reduce) { .chev { transition: none; } }
+</style>
+</head>
+<body>
+<main>
+
+  <h1>План на неделю: форма, ягодицы и осанка</h1>
+  <p class="lead">3 силовые тренировки дома без инвентаря, короткая зарядка для осанки каждый день и питание без ограничений. Нажми на тренировочный день, чтобы открыть упражнения.</p>
+
+  <!-- ===================== НЕДЕЛЯ ===================== -->
+  <h2>Твоя неделя</h2>
+  <p class="sub">Тренировки идут через день, потому что мышцам нужен отдых, чтобы расти. Отмечай галочкой каждую сделанную.</p>
+
+  <div class="week">
+
+    <div class="day">
+      <div class="dname">Пн</div>
+      <details class="train" id="d-a">
+        <summary>
+          <div class="t-title"><strong>Тренировка A</strong><span>Ягодицы и ноги · 35–45 мин</span></div>
+          <label class="done" onclick="event.stopPropagation()"><input type="checkbox" data-key="a" aria-label="Тренировка A сделана"></label>
+          <span class="chev" aria-hidden="true"></span>
+        </summary>
+        <div class="t-body">
+          <p class="frame"><b>Сначала разминка (5 мин):</b> кошка-корова 10 раз, круги плечами 10 раз, 10 ягодичных мостиков, 10 «ракушек» (лёжа на боку раскрываешь колено).</p>
+          <ol class="ex">
+            <li><b>Ягодичный мостик</b><span class="chip">3×15</span>
+              <small>Лёжа на спине, стопы на полу. Поднимай таз, сжимая ягодицы, замри вверху на 2 секунды.</small></li>
+            <li><b>Болгарские приседания</b><span class="chip">3×8–12 на ногу</span>
+              <small>Задняя нога лежит стопой на стуле или диване, приседай на передней. Если тяжело, начни с обычных приседаний.</small></li>
+            <li><b>Румынская тяга на одной ноге</b><span class="chip">3×10 на ногу</span>
+              <small>Стоя на одной ноге, наклоняйся вперёд, задняя нога уходит назад. Спина прямая, можно держаться за стену.</small></li>
+            <li><b>Отведение ноги лёжа на боку</b><span class="chip">3×15 на ногу</span>
+              <small>Лёжа на боку, поднимай верхнюю прямую ногу вверх и медленно опускай. Это средняя ягодичная, она даёт линию бёдер.</small></li>
+            <li><b>Dead bug («мёртвый жук»)</b><span class="chip">3×8 на сторону</span>
+              <small>Лёжа на спине, руки вверх, ноги согнуты под 90°. Вытягивай противоположные руку и ногу, поясница прижата к полу.</small></li>
+          </ol>
+          <p class="frame"><b>В конце:</b> растяжка 3–5 минут. Отдых между подходами 60–90 секунд.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="day">
+      <div class="dname">Вт</div>
+      <div class="rest"><b>Отдых.</b> Только зарядка для осанки (5–7 минут) и прогулка.</div>
+    </div>
+
+    <div class="day">
+      <div class="dname">Ср</div>
+      <details class="train" id="d-b">
+        <summary>
+          <div class="t-title"><strong>Тренировка B</strong><span>Спина, плечи и кор · 35–45 мин</span></div>
+          <label class="done" onclick="event.stopPropagation()"><input type="checkbox" data-key="b" aria-label="Тренировка B сделана"></label>
+          <span class="chev" aria-hidden="true"></span>
+        </summary>
+        <div class="t-body">
+          <p class="frame"><b>Сначала разминка (5 мин):</b> та же, что в понедельник.</p>
+          <ol class="ex">
+            <li><b>Тяга в наклоне с рюкзаком</b><span class="chip">3×10–12</span>
+              <small>Положи в рюкзак книги. Наклонись вперёд с прямой спиной и подтягивай рюкзак к животу, сводя лопатки.</small></li>
+            <li><b>Y-T-W подъёмы</b><span class="chip">3 круга по 8</span>
+              <small>Лёжа на животе, поднимай руки формой буквы Y, потом T, потом W. Плечи от ушей, шея расслаблена.</small></li>
+            <li><b>Обратные «снежные ангелы»</b><span class="chip">3×12</span>
+              <small>Лёжа на животе, плавно веди руки от бёдер вверх над головой, как будто рисуешь ангела на снегу.</small></li>
+            <li><b>Отжимания</b><span class="chip">3×8–10</span>
+              <small>От колен или от пола. Внизу сводишь лопатки, локти под 45° к корпусу, не разводи их широко.</small></li>
+            <li><b>Мостик на одной ноге</b><span class="chip">3×10 на ногу</span>
+              <small>Обычный мостик, но одна нога вытянута вверх. Таз держи ровно, не заваливай в сторону.</small></li>
+            <li><b>Планка</b><span class="chip">3×30–40 сек</span>
+              <small>Стоя на предплечьях и носках, тело ровной линией, ягодицы сжаты, живот подтянут.</small></li>
+          </ol>
+          <p class="frame"><b>В конце:</b> растяжка 3–5 минут.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="day">
+      <div class="dname">Чт</div>
+      <div class="rest"><b>Отдых.</b> Зарядка для осанки и прогулка.</div>
+    </div>
+
+    <div class="day">
+      <div class="dname">Пт</div>
+      <details class="train" id="d-c">
+        <summary>
+          <div class="t-title"><strong>Тренировка C</strong><span>Ягодицы и ноги, вариант · 35–45 мин</span></div>
+          <label class="done" onclick="event.stopPropagation()"><input type="checkbox" data-key="c" aria-label="Тренировка C сделана"></label>
+          <span class="chev" aria-hidden="true"></span>
+        </summary>
+        <div class="t-body">
+          <p class="frame"><b>Сначала разминка (5 мин):</b> та же.</p>
+          <ol class="ex">
+            <li><b>Приседания сумо</b><span class="chip">3×12–15</span>
+              <small>Ноги шире плеч, носки развёрнуты в стороны. Внизу пауза 2 секунды.</small></li>
+            <li><b>Hip thrust</b><span class="chip">3×12–15</span>
+              <small>Как мостик, но лопатками опираешься на диван. Главное упражнение для роста ягодиц, вверху сильно сжимай.</small></li>
+            <li><b>Выпады назад</b><span class="chip">3×10 на ногу</span>
+              <small>Шаг назад и вниз, пока переднее бедро почти параллельно полу. Небольшой наклон корпуса вперёд включает ягодицы.</small></li>
+            <li><b>«Пожарный гидрант»</b><span class="chip">3×15 на ногу</span>
+              <small>Стоя на четвереньках, отводи согнутую ногу в сторону. Таз не поворачивай.</small></li>
+            <li><b>Боковая планка</b><span class="chip">3×20–30 сек на сторону</span>
+              <small>Стоя на предплечье, тело прямое, таз не проваливай. Работает на талию.</small></li>
+          </ol>
+          <p class="frame"><b>В конце:</b> растяжка 3–5 минут.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="day">
+      <div class="dname">Сб</div>
+      <div class="rest"><b>Активный отдых.</b> Прогулка 40–60 минут, спокойно и в своё удовольствие. Плюс зарядка для осанки.</div>
+    </div>
+
+    <div class="day">
+      <div class="dname">Вс</div>
+      <div class="rest"><b>Полный отдых.</b> Заготовь еду на неделю: сваренная крупа, курица или рыба, нарезанные овощи, творог и йогурты. Так проще питаться регулярно, пока ты на работе.</div>
+    </div>
+
+  </div>
+  <button class="reset" type="button" id="reset">Сбросить галочки</button>
+
+  <div class="rule">
+    <p><b>Если график поплыл:</b> тренировки не привязаны к дням недели. Главное, чтобы между тренировками был хотя бы один день отдыха, а порядок A → B → C → A остался. Пропустила? Просто сделай следующую по порядку в ближайший свободный день, без «двойной» нагрузки.</p>
+  </div>
+
+  <h3>Когда тренироваться</h3>
+  <ul class="plain">
+    <li><b>Утром:</b> вставай на 45–60 минут раньше и закончи до 9:00.</li>
+    <li><b>Вечером:</b> после работы, лучше не позже 21:00, чтобы легко заснуть.</li>
+    <li>Ешь за 1,5–2 часа до тренировки. После можно поесть обычным приёмом пищи.</li>
+    <li><b>Совсем нет времени?</b> Сделай мини-версию на 20 минут: 3 упражнения из любой тренировки по 2 подхода.</li>
+  </ul>
+
+  <!-- ===================== ОСАНКА ===================== -->
+  <h2>Осанка: каждый день 5–7 минут</h2>
+  <p class="sub">Плечи завернуты вперёд, потому что грудные мышцы стали короче, а мышцы спины ослабли. Растягиваем первое, укрепляем второе (это тренировка B).</p>
+  <div class="panel">
+    <ul class="plain">
+      <li><b>Растяжка грудных в дверном проёме:</b> 2 раза по 30 секунд. Предплечье на косяке, шаг вперёд.</li>
+      <li><b>Втягивание подбородка (chin tuck):</b> 10 раз, удерживай по 5 секунд. Двигай голову назад, будто делаешь «двойной подбородок».</li>
+      <li><b>Растяжка сгибателей бедра:</b> выпад на колено, таз слегка подкручен вперёд, 2 раза по 30 секунд на ногу. Помогает пояснице и линии ягодиц.</li>
+      <li><b>Прогиб грудного отдела:</b> 1 минута на свёрнутом полотенце под лопатками или у стены.</li>
+    </ul>
+  </div>
+  <div class="rule">
+    <p>На работе вставай раз в 45–60 минут и разводи лопатки назад и вниз. Заметные изменения осанки обычно приходят через 2–3 месяца регулярной работы.</p>
+  </div>
+
+  <!-- ===================== ПИТАНИЕ ===================== -->
+  <h2>Питание</h2>
+  <p class="sub">Цель: чтобы мышцам хватало энергии расти. Худеть тебе не нужно, поэтому калории не урезаем.</p>
+
+  <div class="macros">
+    <div><strong>1800–2000</strong><span>ккал в день</span></div>
+    <div><strong>95–105 г</strong><span>белка (минимум)</span></div>
+    <div><strong>55–65 г</strong><span>жиров</span></div>
+    <div><strong>250–270 г</strong><span>углеводов</span></div>
+  </div>
+
+  <h3>Как выйти на эти цифры, если сейчас ты ешь меньше</h3>
+  <div class="steps">
+    <div><b>Недели 1–2.</b> Ничего не меняй, только записывай всё, что ешь, в приложении (FatSecret или MyFitnessPal). Продукты взвешивай на кухонных весах.</div>
+    <div><b>Дальше.</b> Добавляй по 100–150 ккал каждые 1–2 недели: горсть орехов, йогурт, лишний кусок хлеба с белком.</div>
+    <div><b>Цель.</b> Выйти на 1800–2000 ккал, приоритет у белка.</div>
+  </div>
+
+  <h3>Пример дня (около 1800 ккал)</h3>
+  <p class="sub">Цифры приблизительные, это пример структуры, а не строгое меню. Меняй продукты на любимые.</p>
+  <div class="panel">
+    <div class="meal"><b>Завтрак</b><span class="kc">≈ 380 ккал</span><p>Омлет из 2 яиц с овощами, ломтик цельнозернового хлеба, 1 ч. л. масла.</p></div>
+    <div class="meal"><b>Обед (можно взять на работу)</b><span class="kc">≈ 470 ккал</span><p>Куриная грудка 150 г, гречка или рис 150 г готовой, овощи, 1 ст. л. масла.</p></div>
+    <div class="meal"><b>Перекус</b><span class="kc">≈ 330 ккал</span><p>Греческий йогурт 150–200 г, банан, горсть орехов.</p></div>
+    <div class="meal"><b>Ужин</b><span class="kc">≈ 400 ккал</span><p>Рыба 120–150 г, картофель 200 г, салат с маслом.</p></div>
+    <div class="meal"><b>Вечерний перекус</b><span class="kc">≈ 180 ккал</span><p>Творог 5% 150 г, можно с ягодами.</p></div>
+  </div>
+
+  <div class="rule">
+    <p>В каждом приёме пищи бери источник белка: яйца, творог, курицу, рыбу, бобовые, йогурт. Пей воду в течение дня и спи 7–8 часов, потому что мышцы растут именно во сне.</p>
+  </div>
+
+  <!-- ===================== ПРОГРЕСС ===================== -->
+  <h2>Как усложнять и следить за результатом</h2>
+  <div class="steps">
+    <div><b>Повторения.</b> Когда во всех подходах получается верхняя цифра диапазона (например, 12 из «8–12»), усложняй упражнение.</div>
+    <div><b>Темп.</b> Опускайся медленно, 3 секунды, и добавляй паузу внизу.</div>
+    <div><b>Вариации.</b> Двуногий мостик → на одной ноге. Больше груза в рюкзаке. Мини-петля (резинка для ног) выше колен на мостиках и приседаниях особенно включает среднюю ягодичную.</div>
+    <div><b>Замеры.</b> Раз в 2–4 недели измеряй талию и самое широкое место по ягодицам и делай фото. Вес может вырасти на 0,5–1 кг, и это нормально, это мышцы.</div>
+  </div>
+
+  <h3>Как читать записи</h3>
+  <div class="terms">
+    <div><b>Повторение</b>Одно движение целиком: один раз присела и встала.</div>
+    <div><b>Подход</b>Серия повторений подряд без остановки.</div>
+    <div><b>3×15</b>3 подхода по 15 повторений с отдыхом между ними.</div>
+    <div><b>3×8–12</b>3 подхода по 8–12 повторений. Начни с 8, доведи до 12.</div>
+    <div><b>На ногу / на сторону</b>Упражнение делаешь отдельно для каждой стороны.</div>
+    <div><b>2–3 повторения в запасе</b>Останавливайся, когда чувствуешь, что могла бы сделать ещё 2–3 раза.</div>
+  </div>
+
+  <footer>Первые 2 недели можно делать по 2 подхода вместо 3, пока осваиваешь технику. Если появится боль (не усталость мышц, а именно боль) в суставах или спине, остановись и обратись к врачу.</footer>
+
+</main>
+
+<script>
+(function () {
+  var KEY = "plan-week-checks";
+  var boxes = document.querySelectorAll('input[data-key]');
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { state = {}; }
+  boxes.forEach(function (b) {
+    b.checked = !!state[b.dataset.key];
+    b.addEventListener("change", function () {
+      state[b.dataset.key] = b.checked;
+      try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+    });
+  });
+  document.getElementById("reset").addEventListener("click", function () {
+    boxes.forEach(function (b) { b.checked = false; });
+    state = {};
+    try { localStorage.removeItem(KEY); } catch (e) {}
+  });
+})();
+</script>
+</body>
+</html>
